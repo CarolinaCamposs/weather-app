@@ -2,7 +2,7 @@
 
 Weather App é uma aplicação simples desenvolvida em Angular para consultar a previsão do tempo de qualquer cidade utilizando a API do OpenWeatherMap.
 
-![image](https://github.com/user-attachments/assets/aa7e0a3c-6c69-430e-9e66-cdee95a53ca8)
+![image](https://github.com/user-attachments/assets/320c237a-99b3-4b2d-b529-9ce20cf2183d)
 
 
 ## Funcionalidades
