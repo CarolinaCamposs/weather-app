@@ -1,11 +1,54 @@
-<div class="weather-container">
-    <h1>Previsão do Tempo</h1>
-    <input type="text" [(ngModel)]="city" placeholder="Digite o nome da cidade">
-    <button (click)="getWeather()">Buscar</button>
+<mat-toolbar color="primary" class="toolbar">
+  <span>Previsão do Tempo</span>
+</mat-toolbar>
 
-    <div *ngIf="weatherData">
-        <h2>{{ weatherData.name }}</h2>
-        <p>Temperatura: {{ weatherData.main.temp }} °C</p>
-        <p>O tempo: {{ weatherData.weather[0].description }}</p>
-    </div>
+<div class="main-container">
+  <div class="weather-container">
+    <mat-card class="input-card">
+      <mat-card-content>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Digite o nome da cidade</mat-label>
+          <input
+            type="text"
+            matInput
+            [formControl]="cityControl"
+            [matAutocomplete]="auto"
+            placeholder="Digite o nome da cidade"
+          />
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option
+              *ngFor="let city of filteredCities | async"
+              [value]="city"
+            >
+              {{ city }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <div class="button-group">
+          <button mat-raised-button color="primary" (click)="getWeather()">
+            Buscar
+          </button>
+          <button mat-raised-button color="warn" (click)="clearWeather()">
+            Apagar
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card *ngIf="weatherData" class="weather-card">
+      <mat-card-header>
+        <mat-card-title>{{ weatherData.name }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="weather-info">
+          <div class="temp-icon">
+            <span class="temperature">{{ weatherData.main.temp }}°C</span>
+          </div>
+          <div class="weather-description">
+            <p>{{ weatherData.weather[0].description }}</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
